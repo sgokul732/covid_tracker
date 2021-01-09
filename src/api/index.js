@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "https://covid.mathdro.id/api";
+let url = "https://covid.mathdro.id/api";
 export const fetchData = async (country) => {
   let urlWithCountry=url;
   if(country){
@@ -13,7 +13,8 @@ export const fetchData = async (country) => {
 };
 
 export const fetchDailyData = async () => {
-  try {
+  try {    
+    url='https://covid19.mathdro.id/api';
     const {data} = await axios.get(`${url}/daily`);
     const modifiedData=data.map((dailyData)=>({
       confirmed:dailyData.confirmed.total,
